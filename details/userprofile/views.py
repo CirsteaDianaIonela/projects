@@ -7,10 +7,10 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
+from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 # Create your views here.
 from django.template.loader import render_to_string
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
 
 from userprofile.forms import NewAccountForm
@@ -48,3 +48,10 @@ class CreateNewAccount(LoginRequiredMixin, CreateView): #login ca sa putem sa ve
             email.attach_alternative(msg_html, 'text/html')
             email.send()
         return reverse('visualizations:lista_vizualizare')
+
+class MyPasswordChangeView(PasswordChangeView):
+    template_name = 'userprofile/password-change.html'
+    success_url = reverse_lazy('userprofile:password-change-done-view')
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'userprofile/password-reset-done.html'
