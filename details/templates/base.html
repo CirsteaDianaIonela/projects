@@ -4,20 +4,19 @@
     {% endblock %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
-    <body>
+    <body style="background-color:Azure;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <nav>
                     <a class="btn" href="/admin">Admin</a>
-                    {{ redirect_to_login_immediately }}
                     {% if request.user.is_authenticated %}
                     <span>Hi, {{ request.user.username |upper }}</span>
                     <br><br>
                     <a class="btn" href="{% url 'visualizations:lista_vizualizare' %}">Active projects</a>
                     <a class="btn" href="{% url 'visualizations:vizualizare_inactive' %}">Inactive projects</a>
                     <a class="btn" href="{% url 'userprofile:utilizator_nou' %}">Add new user</a>
-                    <a href="{% url 'userprofile:password-change-view' %}"><button class="ui button">Change password</button></a>
+                    <a class="btn" href="{% url 'userprofile:password-change-view' %}">Change password</a>
                     <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
 
                 {% endif %}
