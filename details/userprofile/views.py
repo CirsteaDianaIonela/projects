@@ -1,6 +1,6 @@
 import random
 import string
-
+from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -12,6 +12,7 @@ from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
+
 
 from userprofile.forms import NewAccountForm
 punctuation = '!$%?#@'
@@ -52,6 +53,14 @@ class CreateNewAccount(LoginRequiredMixin, CreateView): #login ca sa putem sa ve
 class MyPasswordChangeView(PasswordChangeView):
     template_name = 'userprofile/password-change.html'
     success_url = reverse_lazy('userprofile:password-change-done-view')
-
+    # MIN_LENGTH = 8
+    # def clean_new_password1(self):
+    #      password = self.cleaned_data.get('password')
+    #      if len(password) < self.MIN_LENGTH:
+    #          raise forms.ValidationError("The new password must be at least %d characters long." % self.MIN_LENGTH)
+    #      first_isalpha = password[0].isalpha()
+    #      if all(c.isalpha() == first_isalpha for c in password):
+    #          raise forms.ValidationError("The new password must contain at least one letter and at least one digit or punctuation character.")
+    #      return password
 class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'userprofile/password-reset-done.html'
