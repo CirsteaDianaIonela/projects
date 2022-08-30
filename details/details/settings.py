@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_password_validators',
+    'django_password_validators.password_history',
     'aplicatie1',
     'userprofile',
 ]
@@ -100,11 +102,15 @@ AUTH_PASSWORD_VALIDATORS = [
             'min_length': 8,
         }
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    {'NAME': 'django_password_validators.password_character_requirements.password_validation.PasswordCharacterValidator',
+        'OPTIONS': {
+             'min_length_digit': 1,
+             'min_length_alpha': 1,
+             'min_length_special': 1,
+             'min_length_lower': 1,
+             'min_length_upper': 1,
+             'special_characters': ".~!@#$%^&*()_+{}\":;'[]"
+         }
     },
 ]
 
@@ -143,3 +149,4 @@ SESSION_TIMEOUT_REDIRECT = '/'
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
