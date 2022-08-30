@@ -50,17 +50,11 @@ class CreateNewAccount(LoginRequiredMixin, CreateView): #login ca sa putem sa ve
             email.send()
         return reverse('visualizations:lista_vizualizare')
 
+
 class MyPasswordChangeView(PasswordChangeView):
     template_name = 'userprofile/password-change.html'
     success_url = reverse_lazy('userprofile:password-change-done-view')
-    # MIN_LENGTH = 8
-    # def clean_new_password1(self):
-    #      password = self.cleaned_data.get('password')
-    #      if len(password) < self.MIN_LENGTH:
-    #          raise forms.ValidationError("The new password must be at least %d characters long." % self.MIN_LENGTH)
-    #      first_isalpha = password[0].isalpha()
-    #      if all(c.isalpha() == first_isalpha for c in password):
-    #          raise forms.ValidationError("The new password must contain at least one letter and at least one digit or punctuation character.")
-    #      return password
+
+
 class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'userprofile/password-reset-done.html'

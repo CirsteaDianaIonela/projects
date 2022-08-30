@@ -19,12 +19,13 @@ from django.urls import path
 from django.urls import include
 from django.contrib.auth import views as auth_views
 
-
+# from details.views import MyLogIn
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('django.contrib.auth.urls'), {'next_page': '/'}, name='login'),
     path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    # path('', MyLogIn.as_view(template_name='registration/login.html'), name='login'),
     path('visualizations/', include('aplicatie1.urls')),
     path('profile/', include('userprofile.urls')),
     path('userprofile/', include('userprofile.urls'), name='userprofile'),
