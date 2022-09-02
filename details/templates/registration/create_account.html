@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.label }} {{ field }} {{ field.errors }} <br><br>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary active"  role="button" data-mdb-toggle="button" aria-pressed="true"> <i class="bi bi-person-plus-fill"></i>  Create account</button>
+    </form>
+{% endblock %}

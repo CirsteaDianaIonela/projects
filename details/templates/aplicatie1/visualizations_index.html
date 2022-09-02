@@ -5,9 +5,14 @@
         <thead>
             <tr>
                 <th>Index</th>
-                <th>Project</th>
+                <th>Project name</th>
                 <th>Description</th>
                 <th>Responsible</th>
+                <th>Estimated duration</th>
+                <th>Deadline</th>
+                <th>Status</th>
+                <th>Percentage</th>
+                <th>Comment</th>
                 <th>Stare</th>
                 <th>Actions</th>
             </tr>
@@ -19,14 +24,20 @@
                     <td>{{ item.project }}</td>
                     <td>{{ item.description }}</td>
                     <td>{{ item.responsible }}</td>
-                     <td>{% if item.active == 1 %}
+                    <td>{{item.estimated_duration}}</td>
+                    <td>{{item.deadline}}</td>
+                    <td>{{item.status}}</td>
+                    <td>{{item.percentage}}</td>
+                    <td>{{item.comment}}</td>
+                    <td>{% if item.active == 1 %}
                             <span>Activ</span>
                         {% else %}
                         <span>Inactiv</span>
                         {% endif %}
                     </td>
-                    <td><a href="{% url 'visualizations:modifica' item.id %}" class="btn btn-success">Modify</a>
+                    <td><a href="{% url 'visualizations:modifica' item.id %}" class="btn btn-success">Modify </a>
                         {% if item.active == 1 %}
+                        <br>
                         <a href="{% url 'visualizations:sterge' item.id %}" class="btn btn-danger">Delete</a>
                         {% else %}
                         <a href="{% url 'visualizations:activeaza' item.id %}" class="btn btn-info">Activate</a>
