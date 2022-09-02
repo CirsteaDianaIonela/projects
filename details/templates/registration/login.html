@@ -1,25 +1,59 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="carousel-inner">
-    <!-- Single item -->
-    <div class="carousel-item active">
-      <video class="img-fluid" autoplay loop muted>
-        <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
-      </video>
-      <div class="carousel-caption d-none d-md-block">
-    <form method="POST">
+<section class="text-center text-lg-start">
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+  </style>
+<form method="POST">
         {% csrf_token %}
-    <label>Username</label>
-    <input type="text" name="username">
-    <label>Password</label>
-    <input type="password" name="password">
-        <div class="g-recaptcha" data-sitekey="6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0"></div>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <button type="submit" class="btn btn-info">Login</button>
-    <span style="color: red;">{{ form.non_field_errors }}</span>
-    <a href="{% url 'reset_password' %}" class="btn btn-success">Forgot password</a>
-    </form>
-{% endblock %}
-</div>
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Welcome!</h2>
+            <form>
+<!--              <div class="row">-->
+                    <div class="form-outline mb-4">
+                  <div class="form-outline">
+                    <input type="text" name="username" id="form3Example1" class="form-control" />
+                    <label class="form-label" for="form3Example1">Username</label>
+                  </div>
+                </div>
+
+
+              <div class="form-outline mb-4">
+                <input type="password" name="password" id="form3Example2" class="form-control" />
+                <label class="form-label" for="form3Example2">Password</label>
+              </div>
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+                    <div class="g-recaptcha" data-sitekey="6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0"></div>
+              <button type="submit" class="btn btn-primary btn-block mb-4">
+                LogIn
+              </button>
+              <button type="submit" class="btn btn-success btn-block mb-4">
+                Forgot Password
+              </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4"
+          alt="" />
+      </div>
     </div>
-</div>
+      </div>
+</form>
+   {% endblock %}
+</section>

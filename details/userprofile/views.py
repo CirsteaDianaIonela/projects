@@ -19,7 +19,7 @@ punctuation = '!$%?#@'
 
 class CreateNewAccount(LoginRequiredMixin, CreateView): #login ca sa putem sa vedem dupa autentificare, si create pentru ca vreau sa creez utilizator
     model = User
-    template_name = 'aplicatie1/visualizations_form.html'
+    template_name = 'registration/create_account.html' #!!!!!aici pun noul html, il rescriu pe cel din visualization form!!!!!!!!!!!!!!
     form_class = NewAccountForm#capurile pe care vrem sa le vedem in formular, facem un form class, putem sa rescriem proprietati din formular si sa punem conditii de validare
 
     def form_valid(self, form):

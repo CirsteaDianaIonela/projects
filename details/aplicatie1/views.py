@@ -21,7 +21,7 @@ class VisualizationsView(LoginRequiredMixin, ListView):
 
 class CreateVisualizationsView(LoginRequiredMixin, CreateView):
     model = Visualization #luat din models si il importam
-    fields = ['project', 'description', 'responsible'] #ce campuri sa aduca din model
+    fields = ['project', 'description', 'responsible', 'estimated_duration', 'deadline', 'status', 'percentage', 'comment'] #ce campuri sa aduca din model
     template_name = 'aplicatie1/visualizations_form.html'#template-ul catre care trimitem
 
     def get_success_url(self):
@@ -29,7 +29,7 @@ class CreateVisualizationsView(LoginRequiredMixin, CreateView):
 
 class UpdateVisualizationsView(LoginRequiredMixin, UpdateView):
     model = Visualization #luat din models si il importam
-    fields = ['project', 'description', 'responsible'] #ce campuri sa aduca din model
+    fields = ['project', 'description', 'responsible', 'estimated_duration', 'deadline', 'status', 'percentage', 'comment'] #ce campuri sa aduca din model
     template_name = 'aplicatie1/visualizations_form.html'#template-ul catre care trimitem
 
     def get_success_url(self):

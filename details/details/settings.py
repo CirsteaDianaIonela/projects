@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_password_validators.password_history',
     'aplicatie1',
     'userprofile',
+    # 'captcha',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'details.context_processor.recaptcha_site_key',
             ],
         },
     },
@@ -140,12 +142,21 @@ LOGIN_REDIRECT_URL = '/visualizations'
 LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+EMAIL_HOST = 'mail.my-it-solutions.net'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 25
+EMAIL_HOST_USER = str(('EMAIL_USER'))  #de primit parola si de pus in paranteze
+EMAIL_HOST_PASSWORD = str(('EMAIL_PASSWORD'))  #trec aici direct parola + comentez email backend
 
 SESSION_EXPIRE_SECONDS = 3600 #6
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 #0.1
 SESSION_TIMEOUT_REDIRECT = '/'
 
+# RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
+# RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
+# SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 GOOGLE_RECAPTCHA_SECRET_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+
