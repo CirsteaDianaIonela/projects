@@ -1,4 +1,3 @@
-__version__ = "0.0.0"
 Changelog
 =========
 
@@ -20,3 +19,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Security
 -->
+<!--next-version-placeholder-->
