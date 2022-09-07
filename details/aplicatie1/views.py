@@ -1,6 +1,11 @@
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+import datetime
+from .filters import VisualizationFilter
+
+
 
 # Create your views here.
 from django.urls import reverse
@@ -12,11 +17,14 @@ from aplicatie1.models import Visualization
 class VisualizationsView(LoginRequiredMixin, ListView):
     model = Visualization #luat din models si il importam
     template_name = 'aplicatie1/visualizations_index.html'
+    paginate_by = 5
     queryset = model.objects.filter(active=1)
+    # context_object_name = 'visualization'
 
 
     def get_context_data(self, *args, **kwargs):
         data = super(VisualizationsView, self).get_context_data(*args, **kwargs)
+        data['filter'] = VisualizationFilter(self.request.GET, queryset=self.get_queryset())
         return data
 
 class CreateVisualizationsView(LoginRequiredMixin, CreateView):
@@ -49,8 +57,32 @@ def activate_visualizations(request, pk):
 class VisualizationsInactiveView(LoginRequiredMixin, ListView):
     model = Visualization #luat din models si il importam
     template_name = 'aplicatie1/visualizations_index.html'
+    paginate_by = 5
     queryset = model.objects.filter(active=0)
+
 
     def get_context_data(self, *args, **kwargs):
         data = super(VisualizationsInactiveView, self).get_context_data(*args, **kwargs)
+        data['filter'] = VisualizationFilter(self.request.GET, queryset=self.get_queryset())
+        return data
+
+
+from django.db.models import DurationField, F, ExpressionWrapper
+from django.db.models.functions import ExtractDay
+from django.utils import timezone
+import requests
+
+class Deadline(LoginRequiredMixin, ListView):
+    model = Visualization
+    template_name = 'aplicatie1/visualizations_index.html'
+    # queryset = model.objects.filter(created__gte=Visualization.deadline - datetime.timedelta(days=7))
+    # queryset = model.objects.filter(created__gte=Visualization.deadline(days=7))
+    # queryset = model.objects.filter(active=1)
+    # visualization = model.objects.all()
+    # visualization_filter = VisualizationFilter(requests.get, queryset=visualization)
+    # context = {'visualization_filter': visualization_filter}
+    paginate_by = 5
+    def get_context_data(self, *args, **kwargs):
+        data = super(Deadline, self).get_context_data(*args, **kwargs)
+        data['filter'] = VisualizationFilter(self.request.GET, queryset=self.get_queryset())
         return data

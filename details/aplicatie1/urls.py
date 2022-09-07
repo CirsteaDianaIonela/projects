@@ -13,6 +13,7 @@ urlpatterns = [
     path('<int:pk>/delete/', views.delete_visualizations, name='sterge'), #il duc in index ca sa creez butonul
     path('<int:pk>/activeaza/', views.activate_visualizations, name='activeaza'), #il duc in index ca sa creez butonul
     path('vizualizare_inactive', views.VisualizationsInactiveView.as_view(), name='vizualizare_inactive'), #il duc in base ca sa creez tab-ul
+    path('all', views.Deadline.as_view(), name='all'), #il duc in base ca sa creez tab-ul
 
 
 ]

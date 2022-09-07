@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_password_validators',
     'django_password_validators.password_history',
+    'django_filters',
     'aplicatie1',
     'userprofile',
     # 'captcha',

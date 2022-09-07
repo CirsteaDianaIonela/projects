@@ -18,9 +18,11 @@
                     <br><br>
                     <a href="{% url 'visualizations:lista_vizualizare' %}"><button class="btn"> <i class="bi bi-clipboard-pulse"></i> Active projects</button></a>
                     <a href="{% url 'visualizations:vizualizare_inactive' %}"><button class="btn"> <i class="bi bi-clipboard"></i> Inactive projects</button></a>
+                    <a href="{% url 'visualizations:all' %}"><button class="btn"> <i class="bi bi-clipboard2-data"></i> All projects</button></a>
                     <a href="{% url 'userprofile:utilizator_nou' %}"><button class="btn"><i class="bi bi-person-plus-fill"></i> Add new user</button></a>
                     <a href="{% url 'userprofile:password-change-view' %}"><button class="btn"><i class="bi bi-key"></i> Change password</button></a>
                     <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+
 
                 {% endif %}
 
