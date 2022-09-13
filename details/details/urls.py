@@ -18,6 +18,9 @@ from django.contrib.auth.views import LoginView
 from django.urls import path
 from django.urls import include
 from django.contrib.auth import views as auth_views
+from details import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 # from details.views import MyLogIn
 # from details.views import custom_login
@@ -37,11 +40,6 @@ urlpatterns = [
 
 
 ]
-
-# from django.contrib import admin
-# from django.utils.safestring import mark_safe
-#
-# from utils import version
-#
-# admin.site.site_header = mark_safe('MyApp admin <span style="font-size: x-small">'
-#                                    f'({version.VERSION})</span>')
+if settings.DEBUG:
+    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

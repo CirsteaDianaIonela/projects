@@ -10,18 +10,17 @@ class Visualization(models.Model):
     project = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     responsible = models.CharField(max_length=100)
-    estimated_duration = models.CharField(max_length=100, default="To be modified")
     deadline = models.DateField(default=timezone.now)
-    # today = models.DateField(default=timezone.now)
-    # rest = today-deadline
-    # days = (today - deadline).days
     status = models.CharField(max_length=20, choices=status_choices, default="Not started")
     percentage = models.CharField(max_length=20, choices=percentage_choices, default="0%")
     comment = models.CharField(max_length=1000, default="To be modified")
     active = models.BooleanField(default=0)
-
+    file = models.FileField(upload_to='store/', default="No file")
+    # today = models.DateField(default=timezone.now)
+    # rest = today-deadline
+    # days = (today - deadline).days
 
     def __str__(self):
-        return f'{self.project} - {self.description} - {self.responsible} - {self.estimated_duration} - {self.deadline}'\
-               f'- {self.status} - {self.percentage} - {self.comment}- {self.today}'
+        return f'{self.project} - {self.description} - {self.responsible} - {self.deadline}'\
+               f'- {self.status} - {self.percentage} - {self.comment} - {self.file}'
 
