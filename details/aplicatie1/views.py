@@ -1,3 +1,4 @@
+import mimetypes
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -5,12 +6,17 @@ from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import datetime
+
+from django.views import generic
+
 from .filters import VisualizationFilter
 # Create your views here.
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView
 from aplicatie1.models import Visualization
-
+from .functions import handle_uploaded_file
+import os
+from django.conf import settings
 
 class VisualizationsView(LoginRequiredMixin, ListView):
     model = Visualization
@@ -29,6 +35,15 @@ class CreateVisualizationsView(LoginRequiredMixin, CreateView):
     fields = ['project', 'description', 'responsible', 'deadline', 'status', 'percentage', 'comment', 'file'] #ce campuri sa aduca din model
     template_name = 'aplicatie1/visualizations_form.html'#template-ul catre care trimitem
 
+    def index(request):
+        if request.method == 'POST':
+            abc = Visualization(request.POST, request.FILES)
+            if abc.is_valid():
+                handle_uploaded_file(request.FILES['file'])
+                return HttpResponse("File uploaded successfuly")
+        else:
+            abc = Visualization()
+            return render(request, "visualizations_form.html", {'form': abc})
     def get_success_url(self):
         return reverse('visualizations:lista_vizualizare') #luat din urls, catre ce pagina sa ne trimita dupa ce adaugam datele
 
@@ -87,3 +102,14 @@ class Deadline(LoginRequiredMixin, ListView):
         data['filter'] = VisualizationFilter(self.request.GET, queryset=self.get_queryset())
         return data
 
+def download_file(request, filename=''):
+    if filename != '':
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        filepath = BASE_DIR + '/media/store/' + filename
+        path = open(filepath, 'rb')
+        mime_type, _ = mimetypes.guess_type(filepath)
+        response = HttpResponse(path, content_type=mime_type)
+        response['Content-Disposition'] = "attachment; filename=%s" % filename
+        return response
+    else:
+        return redirect('visualizations:lista_vizualizare')

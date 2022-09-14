@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django_filters',
     'aplicatie1',
     'userprofile',
-    # 'captcha',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -154,11 +154,12 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 #0.1
 SESSION_TIMEOUT_REDIRECT = '/'
 
-# RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
-# RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
-# SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
+RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
+RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
+# GOOGLE_RECAPTCHA_SECRET_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
+# SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 
 import os

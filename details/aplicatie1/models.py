@@ -16,9 +16,9 @@ class Visualization(models.Model):
     comment = models.CharField(max_length=1000, default="To be modified")
     active = models.BooleanField(default=0)
     file = models.FileField(upload_to='store/', default="No file")
-    # today = models.DateField(default=timezone.now)
     # rest = today-deadline
     # days = (today - deadline).days
+
 
     def __str__(self):
         return f'{self.project} - {self.description} - {self.responsible} - {self.deadline}'\
