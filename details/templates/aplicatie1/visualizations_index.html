@@ -1,50 +1,91 @@
 {% extends 'base.html' %}
 {% block content %}
-<table class="table">
-    <a class="btn btn-success" href="{% url 'visualizations:adauga' %}  ">Add proiect</a>
+<div class="containter">
+    <form method="GET">
+        {{ filter.form }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <br>
+    <table class="table table-hover">
+        <a class="btn btn-success" href="{% url 'visualizations:adauga' %}  ">Add proiect</a>
         <thead>
-            <tr>
-                <th>Index</th>
-                <th>Project name</th>
-                <th>Description</th>
-                <th>Responsible</th>
-                <th>Estimated duration</th>
-                <th>Deadline</th>
-                <th>Status</th>
-                <th>Percentage</th>
-                <th>Comment</th>
-                <th>Stare</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Index</th>
+            <th>Project name</th>
+            <th>Description</th>
+            <th>Responsible</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Percentage</th>
+            <th>Comment</th>
+            <th>Stare</th>
+            <th>File</th>
+            <th>Actions</th>
+        </tr>
         </thead>
-       <tbody>
-            {% for item in visualization_list %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ item.project }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.responsible }}</td>
-                    <td>{{item.estimated_duration}}</td>
-                    <td>{{item.deadline}}</td>
-                    <td>{{item.status}}</td>
-                    <td>{{item.percentage}}</td>
-                    <td>{{item.comment}}</td>
-                    <td>{% if item.active == 1 %}
-                            <span>Activ</span>
-                        {% else %}
-                        <span>Inactiv</span>
-                        {% endif %}
-                    </td>
-                    <td><a href="{% url 'visualizations:modifica' item.id %}" class="btn btn-success">Modify </a>
+        <tbody>
+        {% for item in filter.qs %}
+        <tr>
+            <td>{{ forloop.counter0|add:page_obj.start_index }}</td>
+            <td>{{ item.project }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.responsible }}</td>
+            <td>{{item.deadline}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.percentage}}</td>
+            <td>{{item.comment}}</td>
+            <td>{% if item.active == 1 %}
+                <span>Activ</span>
+                {% else %}
+                <span>Inactiv</span>
+                {% endif %}
+            </td>
+            <td>{{item.file}}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'visualizations:modifica' item.id %}">Modify </a>
                         {% if item.active == 1 %}
-                        <br>
-                        <a href="{% url 'visualizations:sterge' item.id %}" class="btn btn-danger">Delete</a>
+                        <a class="dropdown-item" href="{% url 'visualizations:sterge' item.id %}">Deactivate</a>
                         {% else %}
-                        <a href="{% url 'visualizations:activeaza' item.id %}" class="btn btn-info">Activate</a>
-                         {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
+                        <a class="dropdown-item" href="{% url 'visualizations:activeaza' item.id %}">Activate</a>
+                        {% endif %}
+                        <a class="dropdown-item" href="{% url 'visualizations:download' %}">Download</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
         </tbody>
     </table>
+</div>
+
+{% if is_paginated %}
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li><a class="btn" href="?page={{ page_obj.previous_page_number }}"><<</a></li>
+    {% else %}
+    <li class="disabled btn"><span><<</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+    {% if page_obj.number == i %}
+    <li class="active btn btn-success"><span>{{ i }}<span class="sr-only">(curent)</span></span></li>
+    {% else %}
+    <li><a class="btn" href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li><a class="btn" href="?page={{ page_obj.next_page_number }}">>></a></li>
+    {% else %}
+    <li class="disabled btn"><span>>></span></li>
+    {% endif %}
+    <span class="align-right">Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of
+            {{ page_obj.paginator.count }}</span>
+</ul>
+{% endif %}
 {% endblock %}

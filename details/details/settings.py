@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_password_validators',
     'django_password_validators.password_history',
+    'django_filters',
     'aplicatie1',
     'userprofile',
-    # 'captcha',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -142,21 +143,25 @@ LOGIN_REDIRECT_URL = '/visualizations'
 LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'mail.my-it-solutions.net'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 25
-EMAIL_HOST_USER = str(('EMAIL_USER'))  #de primit parola si de pus in paranteze
-EMAIL_HOST_PASSWORD = str(('EMAIL_PASSWORD'))  #trec aici direct parola + comentez email backend
+# EMAIL_HOST = 'mail.my-it-solutions.net'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = str(('EMAIL_USER'))  #de primit parola si de pus in paranteze
+# EMAIL_HOST_PASSWORD = str(('EMAIL_PASSWORD'))  #trec aici direct parola + comentez email backend
 
 SESSION_EXPIRE_SECONDS = 3600 #6
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 #0.1
 SESSION_TIMEOUT_REDIRECT = '/'
 
-# RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
-# RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
-# SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-GOOGLE_RECAPTCHA_SECRET_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
+RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
+RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
+# GOOGLE_RECAPTCHA_SECRET_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
+# SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
+
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
