@@ -10,14 +10,14 @@ class Visualization(models.Model):
     project = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     responsible = models.CharField(max_length=100)
-    deadline = models.DateField(default=timezone.now)
+    # deadline = models.DateField(default=timezone.now)
+    deadline = models.CharField(max_length=10)
     status = models.CharField(max_length=20, choices=status_choices, default="Not started")
     percentage = models.CharField(max_length=20, choices=percentage_choices, default="0%")
     comment = models.CharField(max_length=1000, default="To be modified")
     active = models.BooleanField(default=0)
     file = models.FileField(upload_to='store/', default="No file")
-    # rest = today-deadline
-    # days = (today - deadline).days
+
 
 
     def __str__(self):
