@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
     'aplicatie1',
     'userprofile',
-    # 'captcha',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -157,9 +157,12 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 #0.1
 SESSION_TIMEOUT_REDIRECT = '/'
 
-# RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
-# RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
-# SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+RECAPTCHA_PUBLIC_KEY = '6Ldp3VciAAAAAHpgmm43io5wmH1LaJdmhF5oSlWV'
+RECAPTCHA_PRIVATE_KEY = '6Ldp3VciAAAAAB8AiPKA1pKVOpZRHy_RZSr7sTk6'
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+RECAPTCHA_DOMAIN = 'www.recaptcha.net'
+RECAPTHA_PROXY = {'http': 'http://127.0.0.1:8000', 'https': 'https://127.0.0.1:8000'}
+
 
 import os
 MEDIA_URL = '/media/'

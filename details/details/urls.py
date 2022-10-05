@@ -24,14 +24,13 @@ from django.conf.urls.static import static
 
 
 # from userprofile.views import MyLoginView
-# from userprofile.views import MyLoginView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('login', views.custom_login, name='login'),
     # path('logout', views.custom_logout, name='logout'),
     path('', include('django.contrib.auth.urls'), {'next_page': '/'}, name='login'), #este partea de logout veche
-    # path('', MyLoginView.as_view(template_name='registration/login.html'), name='login'),
     path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('visualizations/', include('aplicatie1.urls')),
     # path('profile/', include('userprofile.urls')), #am comentat cand am facut noul virtual venv, totul merge ok

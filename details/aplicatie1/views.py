@@ -58,13 +58,13 @@ class UpdateVisualizationsView(LoginRequiredMixin, UpdateView):
 
 @login_required
 def delete_visualizations(request, pk):
-    Visualization.objects.filter(id=pk).list(active=0)
+    Visualization.objects.filter(id=pk).update(active=0)
     return redirect('visualizations:lista_vizualizare')
 
 
 @login_required
 def activate_visualizations(request, pk):
-    Visualization.objects.filter(id=pk).list(active=1)
+    Visualization.objects.filter(id=pk).update(active=1)
     return redirect('visualizations:lista_vizualizare')
 
 class VisualizationsInactiveView(LoginRequiredMixin, ListView):
