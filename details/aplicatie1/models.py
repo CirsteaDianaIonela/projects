@@ -10,7 +10,6 @@ class Visualization(models.Model):
     project = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     responsible = models.CharField(max_length=100)
-    # deadline = models.DateField(default=timezone.now)
     deadline = models.CharField(max_length=10)
     status = models.CharField(max_length=20, choices=status_choices, default="Not started")
     percentage = models.CharField(max_length=20, choices=percentage_choices, default="0%")

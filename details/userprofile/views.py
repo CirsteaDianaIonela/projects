@@ -6,6 +6,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -66,58 +67,4 @@ class MyPasswordChangeView(PasswordChangeView):
 class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'userprofile/password-reset-done.html'
 
-
-# from django.contrib.auth.forms import AuthenticationForm
-#
-#
-# def custom_login(request):
-#     if request.user.is_authenticated:
-#         return redirect('/visualizations')
-#
-#     if request.method == 'POST':
-#         form = AuthenticationForm(request=request, data=request.POST)
-#         if form.is_valid():
-#             user = authenticate(
-#                 username=form.cleaned_data['username'],
-#                 password=form.cleaned_data['password'],
-#             )
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect('/visualizations')
-#
-#         else:
-#             for key, error in list(form.errors.items()):
-#                 if key == 'captcha' and error[0] == 'This field is required.':
-#                     messages.error(request, "You must pass the reCAPTCHA test")
-#                     continue
-#
-#                 messages.error(request, error)
-#
-#     form = UserLoginForm()
-#
-#     return render(
-#         request=request,
-#         template_name="registration/login.html",
-#         context={'form': form}
-#     )
-#
-# from django.contrib.auth import logout
-# from django.contrib.auth.decorators import login_required
-#
-# @login_required
-# def custom_logout(request):
-#     logout(request)
-#     return redirect("/login")
-
-
-# class MyLoginView(LoginView):
-#     def form_valid(self, form):
-#         """Security check complete. Log the user in."""
-#         print("aaaaaa", self.request, "xxxxxxxx")
-#         # print("aaaaaa", self.request["g - recaptcha - response"], "xxxxxxxx")
-#         print(self.request.__dict__)
-#         # g - recaptcha - response
-#         sys.exit()
-#         # login(self.request, form.get_user())
-#         return HttpResponseRedirect(self.get_success_url())
 

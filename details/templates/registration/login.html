@@ -41,7 +41,20 @@
                                     <label class="form-label" for="form3Example2">Password</label>
                                 </div>
                                 <script src='https://www.google.com/recaptcha/api.js'></script>
-                                <div class="g-recaptcha" data-sitekey="6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0"></div>
+                                <script>
+                                        window.onload = function() {
+                                            var $recaptcha = document.querySelector('#g-recaptcha-response');
+
+                                            if($recaptcha) {
+                                                $recaptcha.setAttribute("required", "required");
+                                            }
+                                          const $form = document.querySelector('form');
+                                          $form.addEventListener('submit', (event) => {
+                                            console.log('prevented submit by code for demo');
+                                          });
+                                        };
+                                </script>
+                                <div class="g-recaptcha" data-sitekey="6Ldp3VciAAAAAHpgmm43io5wmH1LaJdmhF5oSlWV"></div>
                                 <button type="submit" class="btn btn-primary btn-block mb-4">Log In</button>
                             </form>
 <a class = "resetare" href="{% url 'reset_password' %}" ><button type="submit" id="diana" class="btn btn-success btn-block mb-4">Forgot Password</button></a>
