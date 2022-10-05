@@ -58,13 +58,13 @@ class UpdateVisualizationsView(LoginRequiredMixin, UpdateView):
 
 @login_required
 def delete_visualizations(request, pk):
-    Visualization.objects.filter(id=pk).update(active=0)
+    Visualization.objects.filter(id=pk).list(active=0)
     return redirect('visualizations:lista_vizualizare')
 
 
 @login_required
 def activate_visualizations(request, pk):
-    Visualization.objects.filter(id=pk).update(active=1)
+    Visualization.objects.filter(id=pk).list(active=1)
     return redirect('visualizations:lista_vizualizare')
 
 class VisualizationsInactiveView(LoginRequiredMixin, ListView):
@@ -79,26 +79,35 @@ class VisualizationsInactiveView(LoginRequiredMixin, ListView):
         data['filter'] = VisualizationFilter(self.request.GET, queryset=self.get_queryset())
         return data
 
-
-from django.db.models import DurationField, F, ExpressionWrapper
-from django.db.models.functions import ExtractDay
-from django.utils import timezone
-import requests
+from datetime import timedelta
 
 class Deadline(LoginRequiredMixin, ListView):
     model = Visualization
     template_name = 'aplicatie1/visualizations_index.html'
-    # queryset = model.objects.filter(created__gte=Visualization.deadline - datetime.timedelta(days=7))
-    # queryset = model.objects.filter(created__gte=Visualization.deadline(days=7))
-    # queryset = model.objects.filter(active=1)
-    # visualization = model.objects.all()
-    # visualization_filter = VisualizationFilter(requests.get, queryset=visualization)
-    # context = {'visualization_filter': visualization_filter}
+    today = datetime.date.today()
+    next = datetime.date.today() + timedelta(days=7)
+    queryset = model.objects.filter(deadline__lte=next).filter(deadline__gte=today)
+    # print(queryset)
     paginate_by = 4
     context_object_name = 'visualizations'
-    queryset = model.objects.order_by('project')
+
     def get_context_data(self, *args, **kwargs):
         data = super(Deadline, self).get_context_data(*args, **kwargs)
+        data['filter'] = VisualizationFilter(self.request.GET, queryset=self.get_queryset())
+        return data
+
+class Expired(LoginRequiredMixin, ListView):
+    model = Visualization
+    template_name = 'aplicatie1/visualizations_index.html'
+    today = datetime.date.today()
+    date = Visualization.objects.values('deadline').first()['deadline']
+    queryset = model.objects.filter(deadline__lte=today)
+    # print(queryset)
+    paginate_by = 4
+    context_object_name = 'visualizations'
+
+    def get_context_data(self, *args, **kwargs):
+        data = super(Expired, self).get_context_data(*args, **kwargs)
         data['filter'] = VisualizationFilter(self.request.GET, queryset=self.get_queryset())
         return data
 

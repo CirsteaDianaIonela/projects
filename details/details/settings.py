@@ -14,6 +14,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# print(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
     'aplicatie1',
     'userprofile',
-    'captcha',
+    # 'captcha',
 ]
 
 MIDDLEWARE = [
@@ -134,6 +135,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# print(STATICFILES_DIRS)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -154,13 +157,9 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 #0.1
 SESSION_TIMEOUT_REDIRECT = '/'
 
-RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
-RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
-SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-
-# GOOGLE_RECAPTCHA_SECRET_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
+# RECAPTCHA_PUBLIC_KEY = '6LfdyZ8hAAAAAIdviRqNApxPRHkUD-CwfPV3e9u0'
+# RECAPTCHA_PRIVATE_KEY = '6LfdyZ8hAAAAAN5QK8l2JpyV83oPmCRVtgCevtLd'
 # SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
-
 
 import os
 MEDIA_URL = '/media/'

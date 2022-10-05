@@ -18,20 +18,23 @@ from django.contrib.auth.views import LoginView
 from django.urls import path
 from django.urls import include
 from django.contrib.auth import views as auth_views
-# from details import views
+from userprofile import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-# from details.views import MyLogIn
-# from details.views import custom_login
+
+# from userprofile.views import MyLoginView
+# from userprofile.views import MyLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('django.contrib.auth.urls'), {'next_page': '/'}, name='login'),
-    # path('', custom_login, name='login'),
+    # path('login', views.custom_login, name='login'),
+    # path('logout', views.custom_logout, name='logout'),
+    path('', include('django.contrib.auth.urls'), {'next_page': '/'}, name='login'), #este partea de logout veche
+    # path('', MyLoginView.as_view(template_name='registration/login.html'), name='login'),
     path('', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('visualizations/', include('aplicatie1.urls')),
-    path('profile/', include('userprofile.urls')),
+    # path('profile/', include('userprofile.urls')), #am comentat cand am facut noul virtual venv, totul merge ok
     path('userprofile/', include('userprofile.urls'), name='userprofile'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="password_reset.html"), name="reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="password_reset_sent.html"), name="password_reset_done"),
