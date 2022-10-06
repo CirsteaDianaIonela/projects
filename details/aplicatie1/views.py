@@ -1,14 +1,10 @@
 import mimetypes
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import datetime
-
-from django.views import generic
-
 from .filters import VisualizationFilter
 # Create your views here.
 from django.urls import reverse
@@ -16,13 +12,14 @@ from django.views.generic import ListView, CreateView, UpdateView
 from aplicatie1.models import Visualization
 from .functions import handle_uploaded_file
 import os
-from django.conf import settings
+
 
 class VisualizationsView(LoginRequiredMixin, ListView):
     model = Visualization
     template_name = 'aplicatie1/visualizations_index.html'
-    paginate_by = 4
-    queryset = model.objects.filter(active=1).order_by('project')
+    # paginate_by = 4
+    today = datetime.date.today()
+    queryset = model.objects.filter(active=1).filter(deadline__gte=today).order_by('project')
     context_object_name = 'visualizations'
 
     def get_context_data(self, *args, **kwargs):
@@ -70,8 +67,9 @@ def activate_visualizations(request, pk):
 class VisualizationsInactiveView(LoginRequiredMixin, ListView):
     model = Visualization #luat din models si il importam
     template_name = 'aplicatie1/visualizations_index.html'
-    paginate_by = 4
-    queryset = model.objects.filter(active=0).order_by('project')
+    # paginate_by = 4
+    today = datetime.date.today()
+    queryset = model.objects.filter(active=0).filter(deadline__gte=today).order_by('project')
     context_object_name = 'visualizations'
 
     def get_context_data(self, *args, **kwargs):
@@ -88,7 +86,7 @@ class Deadline(LoginRequiredMixin, ListView):
     next = datetime.date.today() + timedelta(days=7)
     queryset = model.objects.filter(deadline__lte=next).filter(deadline__gte=today)
     # print(queryset)
-    paginate_by = 4
+    # paginate_by = 4
     context_object_name = 'visualizations'
 
     def get_context_data(self, *args, **kwargs):
@@ -103,7 +101,7 @@ class Expired(LoginRequiredMixin, ListView):
     date = Visualization.objects.values('deadline').first()['deadline']
     queryset = model.objects.filter(deadline__lte=today)
     # print(queryset)
-    paginate_by = 4
+    # paginate_by = 4
     context_object_name = 'visualizations'
 
     def get_context_data(self, *args, **kwargs):

@@ -1,15 +1,10 @@
 import random
 import string
-import sys
-
-from django import forms
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView, LoginView
 # Create your views here.
 from django.template.loader import render_to_string
@@ -19,8 +14,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from userprofile.forms import NewAccountForm
-# from userprofile.forms import NewAccountForm, UserLoginForm
-
 # from userprofile.forms import UserLoginForm
 
 punctuation = '!$%?#@'
