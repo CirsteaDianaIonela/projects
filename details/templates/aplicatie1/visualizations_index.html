@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if request.user.is_authenticated %}
 <div class="containter">
     <form method="GET">
         {{ filter.form }}
@@ -87,5 +88,7 @@
 <!--    <span class="align-right">Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of-->
 <!--            {{ page_obj.paginator.count }}</span>-->
 <!--</ul>-->
+{% else %}
+{% endif %}
 {% endif %}
 {% endblock %}

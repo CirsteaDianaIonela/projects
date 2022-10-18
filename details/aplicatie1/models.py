@@ -18,6 +18,7 @@ class Visualization(models.Model):
 
 
 
+
     def __str__(self):
         return f'{self.project} - {self.description} - {self.responsible} - {self.deadline}'\
                f'- {self.status} - {self.percentage} - {self.comment} - {self.file}'

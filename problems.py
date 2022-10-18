@@ -405,3 +405,91 @@
 # d = [item for item in a if item not in b]
 #
 # print(d)
+# import datetime
+# a = datetime.datetime.today()
+# b = datetime.datetime.today() - 2
+# c = a-b
+# print(c)
+#
+
+# class Deadline(LoginRequiredMixin, ListView):
+#     model = Visualization
+#     template_name = 'aplicatie1/visualizations_index.html'
+#     today = datetime.date.today()
+#     date = Visualization.deadline
+#     diff = today - date
+#     queryset = model.objects.filter(diff.days > 7)
+#
+
+#     deadline = models.DateField(default=datetime.date.today)
+
+# import datetime
+# #
+# # azi = datetime.date.today()
+# # deadline = datetime.date.today()
+# # diff = azi-deadline
+# # print(diff.days)
+# today = str(datetime.date.today())
+# print(type(today))
+
+# ex Returning Strings
+# nume = input("Tell me your name: ")
+# print(f'Hello {nume}, you are doing today?')
+
+
+# ex Abbreviate a Two Word Name
+
+# Write a function to convert a name into initials. This kata strictly takes two words with one space in between them.
+# The output should be two capital letters with a dot separating them.
+# It should look like this:
+# Sam Harris => S.H
+# patrick feeney => P.F
+# def functie(nume):
+#     a = nume.split(" ")
+#     return a[0][0].upper() + "." + a[1][0].upper()
+#
+# functie('Diana Manta')
+
+# ex Reversed Strings
+# Complete the solution so that it reverses the string passed into it.
+#
+# 'world'  =>  'dlrow'
+# 'word'   =>  'drow'
+
+# a = input('Tell me your word: ')
+# b = a[::-1]
+# print(b)
+
+# import csv
+# header = ['name', 'age']
+# data = [['diana', 27], ['georgel', 29]]
+# with open('contries_csv', 'w', newline='') as f:
+#     witer = csv.writer(f)
+#     witer.writerow(header)
+#     witer.writerows(data)
+
+
+
+
+# import csv
+# header = ['name', 'age']
+# dates = [{'name': 'margareta', 'age': 33},
+#          {'name': 'petru', 'age': 22}]
+#
+# with open('countries2_csv', 'w', newline="") as f:
+#     abc = csv.DictWriter(f, fieldnames=header)
+#     abc.writeheader()
+#     abc.writerows(dates)
+
+
+
+
+
+
+
+
+
+
+
+
+
