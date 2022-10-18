@@ -85,11 +85,38 @@ WSGI_APPLICATION = 'details.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+
+     'default': {
+
+        'NAME':os.environ.get('DATABASE_NAME_DEFAULT', ''),
+
+        'ENGINE': 'django.db.backends.mysql',
+
+        'USER': os.environ.get('DATABASE_NAME_DEFAULT_USER', ''),
+
+
+
+        'PASSWORD': os.environ.get('DATABASE_NAME_DEFAULT_PASSWORD', ''),
+
+        'HOST':os.environ.get('DATABASE_NAME_DEFAULT_HOST', ''),
+
+        'PORT':os.environ.get('DATABASE_NAME_DEFAULT_PORT', ''),
+
+        'OPTIONS': {
+
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+
+        },
+
+    },
+
 }
 
 

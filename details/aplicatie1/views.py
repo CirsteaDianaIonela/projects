@@ -98,11 +98,14 @@ class Expired(LoginRequiredMixin, ListView):
     model = Visualization
     template_name = 'aplicatie1/visualizations_index.html'
     today = datetime.date.today()
-    date = Visualization.objects.values('deadline').first()['deadline']
-    queryset = model.objects.filter(deadline__lte=today)
-    # print(queryset)
-    # paginate_by = 4
-    context_object_name = 'visualizations'
+    try:
+        date = Visualization.objects.values('deadline').first()['deadline']
+        queryset = model.objects.filter(deadline__lte=today)
+        # print(queryset)
+        # paginate_by = 4
+        context_object_name = 'visualizations'
+    except TypeError:
+        print("eroare")
 
     def get_context_data(self, *args, **kwargs):
         data = super(Expired, self).get_context_data(*args, **kwargs)

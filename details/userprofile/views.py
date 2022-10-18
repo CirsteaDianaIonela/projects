@@ -60,4 +60,42 @@ class MyPasswordChangeView(PasswordChangeView):
 class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'userprofile/password-reset-done.html'
 
+from django.conf import settings
+import requests
+def my_login(request):
+    response = {}
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        captcha_rs = request.POST.get('g-recaptcha-response')
+        print(captcha_rs)
+        url = "https://www.google.com/recaptcha/api/siteverify"
+        params = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': captcha_rs,
+        }
+        verify_rs = requests.get(url, params=params, verify=True)
+        verify_rs = verify_rs.json()
+        print(verify_rs)
+        response["status"] = verify_rs.get("success", False)
+        response['message'] = verify_rs.get('error-codes', None) or "Unspecified error."
+        print(response)
+
+        user = authenticate(request, username=username, password=password)
+        if response['status'] is False:
+            if user is None:
+                return redirect('login')
+
+        else:
+            if user is None:
+                return redirect('login')
+            else:
+                form = login(request, user)
+                return redirect('visualizations/')
+
+
+
+    form = AuthenticationForm()
+    return render(request, 'registration/login.html', {'form': form})
 

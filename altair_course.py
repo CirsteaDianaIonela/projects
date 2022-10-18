@@ -29,7 +29,7 @@
 # print(bar)
 
 import altair as alt
-import pandas as pd
+import pandas_practice as pd
 from vega_datasets import data
 # # data.world_110m()['objects']['countries']
 # contries = alt.topo_feature(data.world_110m.url, 'countries')
