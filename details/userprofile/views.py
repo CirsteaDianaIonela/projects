@@ -67,7 +67,6 @@ def my_login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
         captcha_rs = request.POST.get('g-recaptcha-response')
         print(captcha_rs)
         url = "https://www.google.com/recaptcha/api/siteverify"
@@ -83,18 +82,20 @@ def my_login(request):
         print(response)
 
         user = authenticate(request, username=username, password=password)
-        if response['status'] is False:
-            if user is None:
-                return redirect('login')
-
-        else:
-            if user is None:
-                return redirect('login')
-            else:
-                form = login(request, user)
-                return redirect('visualizations/')
-
-
+        # if response['status'] is False:
+        #     if user is None:
+        #         print('abc')
+        #         return redirect('login')
+        #
+        # else:
+        #     if user is None:
+        #         return redirect('login')
+        #     else:
+        #         form = login(request, user)
+        #         return redirect('visualizations/')
+        if response['status'] is True and user is not None:
+            form = login(request, user)
+            return redirect('visualizations/')
 
     form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})

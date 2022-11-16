@@ -29,7 +29,7 @@ class VisualizationsView(LoginRequiredMixin, ListView):
 
 class CreateVisualizationsView(LoginRequiredMixin, CreateView):
     model = Visualization
-    fields = ['project', 'description', 'responsible', 'deadline', 'status', 'percentage', 'comment', 'file'] #ce campuri sa aduca din model
+    fields = ['project', 'description', 'responsible', 'deadline', 'status', 'percentage', 'comment', 'file', 'author'] #ce campuri sa aduca din model
     template_name = 'aplicatie1/visualizations_form.html'#template-ul catre care trimitem
 
     def index(request):
@@ -46,7 +46,7 @@ class CreateVisualizationsView(LoginRequiredMixin, CreateView):
 
 class UpdateVisualizationsView(LoginRequiredMixin, UpdateView):
     model = Visualization #luat din models si il importam
-    fields = ['project', 'description', 'responsible', 'deadline', 'status', 'percentage', 'comment', 'file'] #ce campuri sa aduca din model
+    fields = ['project', 'description', 'responsible', 'deadline', 'status', 'percentage', 'comment', 'file', 'author'] #ce campuri sa aduca din model
     template_name = 'aplicatie1/visualizations_form.html'#template-ul catre care trimitem
 
 
@@ -99,12 +99,12 @@ class Expired(LoginRequiredMixin, ListView):
     template_name = 'aplicatie1/visualizations_index.html'
     today = datetime.date.today()
     try:
-        date = Visualization.objects.values('deadline').first()['deadline']
+        # date = Visualization.objects.values('deadline').first()['deadline']
         queryset = model.objects.filter(deadline__lte=today)
         # print(queryset)
         # paginate_by = 4
         context_object_name = 'visualizations'
-    except TypeError:
+    except Exception:
         print("eroare")
 
     def get_context_data(self, *args, **kwargs):
