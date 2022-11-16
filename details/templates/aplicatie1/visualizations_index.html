@@ -22,7 +22,9 @@
             <th>Comment</th>
             <th>Stare</th>
             <th>File</th>
+            <th>Author</th>
             <th>Actions</th>
+
         </tr>
         </thead>
         <tbody>
@@ -43,6 +45,7 @@
                 {% endif %}
             </td>
             <td>{{item.file}}</td>
+            <td>{{item.author}}</td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"

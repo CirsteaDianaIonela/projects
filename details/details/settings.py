@@ -95,19 +95,19 @@ DATABASES = {
 
      'default': {
 
-        'NAME':os.environ.get('DATABASE_NAME_DEFAULT', ''),
+        'NAME':os.environ.get('DATABASE_NAME_DEFAULT', 'details'),
 
         'ENGINE': 'django.db.backends.mysql',
 
-        'USER': os.environ.get('DATABASE_NAME_DEFAULT_USER', ''),
+        'USER': os.environ.get('DATABASE_NAME_DEFAULT_USER', 'a878601'),
 
 
 
-        'PASSWORD': os.environ.get('DATABASE_NAME_DEFAULT_PASSWORD', ''),
+        'PASSWORD': os.environ.get('DATABASE_NAME_DEFAULT_PASSWORD', '12345'),
 
-        'HOST':os.environ.get('DATABASE_NAME_DEFAULT_HOST', ''),
+        'HOST':os.environ.get('DATABASE_NAME_DEFAULT_HOST', 'localhost'),
 
-        'PORT':os.environ.get('DATABASE_NAME_DEFAULT_PORT', ''),
+        'PORT':os.environ.get('DATABASE_NAME_DEFAULT_PORT', '3306'),
 
         'OPTIONS': {
 
