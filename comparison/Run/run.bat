@@ -1,0 +1,15 @@
+@echo off
+
+title Comparison
+
+echo hi
+
+set DATABASE_NAME_DEFAULT=comparison
+
+set DATABASE_NAME_DEFAULT_USER=root
+
+set DATABASE_NAME_DEFAULT_PASSWORD=12345
+
+set DATABASE_NAME_DEFAULT_HOST=localhost
+
+set DATABASE_NAME_DEFAULT_PORT=3306

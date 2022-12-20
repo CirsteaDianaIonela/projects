@@ -57,14 +57,15 @@ class Triangle(Shape):
 class Color:
     RED = "red" #constanta
     PINK = "pink" #constanta
-    @staticmethod
-    def get_colouring(new_object: Shape):
-        return new_object.color
 
-
-    @staticmethod
-    def set_colouring(new_object: Shape, color):
-        new_object.color = color
+    # @staticmethod #comentate 19.10
+    # def get_colouring(new_object: Shape):
+    #     return new_object.color
+    #
+    #
+    # @staticmethod
+    # def set_colouring(new_object: Shape, color):
+    #     new_object.color = color
 
 
 # circle1 = Circle(3)  #instantiez obiectul

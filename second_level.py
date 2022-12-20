@@ -13,20 +13,20 @@ class ShapeUtils(Color):
     def addShape(self, new_object: Shape):  #adaugam obiecte noul nou creat de tip square/rectangle doar obiecte de tip shape sau care mostenesc shape
         return self.list.append(new_object)
 
-    def getShapesArea(self, color, all=False):
+    def getShapesArea(self, color):
         self.sum = 0
         for item in self.list:
-            if all:
+            if color == 'all':
                 self.sum += item.getArea()
             elif item.color == color:
                 self.sum += item.getArea()
         return self.sum
 
 
-    def getShapesPerimeter(self, color, all = False):  #merge cu introducerea culorii, dar vreau sa imi insumeze si daca vreau pentru toate culorile
+    def getShapesPerimeter(self, color=None):  #merge cu introducerea culorii, dar vreau sa imi insumeze si daca vreau pentru toate culorile
         self.sum = 0
         for item in self.list:
-            if all:
+            if color == None or len(color) == 0:
                 self.sum += item.getPerimeter()
             elif item.color == color:
                 self.sum += item.getPerimeter()

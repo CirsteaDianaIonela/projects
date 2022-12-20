@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center>
+    <div>
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.label }} {{ field }}
+            {% if field.label == "product_code" %}
+            {% endif %}
+        {% endfor %}
+        <button class="btn btn-primary">Search product</button>
+    </div>
+    </center>
+    </form>
+{% endblock %}
+
+<!--#done-->

@@ -16,6 +16,11 @@ class Shape(ABC, Corners):
     def getPerimeter(self):
         pass
 
+    def get_colouring(self):
+        return self.color
+
+    def set_colouring(self, color):
+        self.color = color
 
 class Square(Shape):
     def __init__(self, length):
@@ -46,9 +51,13 @@ class Rectangle(Shape):
         return self.perimeter
 
 
-# square5 = Square(2)
+square5 = Square(2)
 # print(square5.getArea())
 # print(square5.getPerimeter())
 # rectangle5 = Rectangle(2, 3)
 # print(rectangle5.getArea())
 # print(rectangle5.getPerimeter())
+# print(square5.get_colouring())
+# print(square5.get_colouring())
+# square5.set_colouring('red')
+# print(square5.color)

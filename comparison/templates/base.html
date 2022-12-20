@@ -1,0 +1,24 @@
+<html>
+<head>
+    {% block title %}
+    {% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body style="background-color:#FFFAFA">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <span>Hi,</span>
+                    <a class="btn btn-primary" href="/scraper/">Search</a>
+                    <a class="btn btn-primary" href="/admin">Admin</a>
+                    <a class="btn btn-primary" href="{% url 'scraper:result' %}">Results</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -16,18 +16,20 @@ trapeze_first.set_no_corners(4)
 #adaug obiectele in lista
 utils_first = ShapeUtils(square_first, rectangle_first, circle_first, triangle_first, trapeze_first)
 
-lista = []
-#spun culoarea pentru care vreau sa calculez suma perimeterelor si iterez prin lista
-start_color = input("Tell me the color: ")
+# lista = []
+#iterez prin lista si setez culoarea in functie de nr de colturi
+
 for item in utils_first.list:
     if item.number_corners == 4:
-        Color.set_colouring(item, "red")
+        item.set_colouring("red")
     else:
-        Color.set_colouring(item, "yellow")
+        item.set_colouring("yellow")
 
+#spun culoarea pentru care vreau sa calculez suma perimeterelor
+start_color = input("Tell me the color: ")
+print(utils_first.getShapesPerimeter(start_color)) #calculez perimetrul pentru o culoare specifica
+# print(utils_first.getShapesArea(start_color)) #calculez perimetrul pentru o culoare specifica
 
-print(utils_first.getShapesPerimeter(start_color))
-# print(utils_first.getShapesPerimeter(start_color, True)) #calculeaza pentru toate formele geometrice
 
 
 #rezulatul dorit este = perimetru triangle 9 + circle 12.56 = 21.56

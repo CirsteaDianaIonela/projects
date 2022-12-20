@@ -1494,4 +1494,198 @@
 # # print(y['name'])
 # y = json.dumps(x)
 # print(y)
+# ex Stop gninnipS My sdroW!
+# def functie(words):
+#     return " ".join([item if len(item) < 5 else item[::-1] for item in words.split(" ")])
+# print(functie('This is another test'))
 
+# ex Find the odd int
+
+# lista = [1, 1, 2,2,3]
+# nou = [item for item in lista if lista.count(item)%2 !=0]
+# print(nou)
+
+# ex Moving Zeros To The End
+
+# lista = [1, 0, 1, 2, 0, 1, 3]
+# farazero = [item for item in lista if item != 0]
+# cuzero = [item for item in lista if item ==0]
+# final = farazero + cuzero
+# print(final)
+
+#enumerate
+# lista = [1, 2, 3]
+# for i,j in enumerate(lista):
+#     print(i,j)
+
+#join
+# lista = ['Ana', 'are', 'mere']
+# nou = " ". join(lista)
+# print(nou)
+
+#eval
+# a = "(2*3)"
+# b = eval(a)
+# print(b)
+
+#split
+# a = 'ana are mere'
+# b = a.split(" ")
+# print(b)
+
+#map
+# lista = [1,2,3]
+# def functie(n):
+#     return n+n
+#
+# x = map(functie, lista)
+# print(list(x))
+
+# try/except
+# number = (input("Tell me the number: "))
+# try:
+#     if int(number)>5:
+#         print("Suntem in try")
+# except ValueError:
+#     print("Sunem in except")
+#
+# else:
+#     print("Suntem si in else pentru ca functioneaza try")
+#
+# finally:
+#     print("Returneaza indiferent daca indeplineste try sau nu")
+
+# m = lambda x,y: x*y
+# b = m(2,6)
+# print(b)
+
+# lista = [1, 2, 0, 4, 5]
+# nou = [item if item % 2 == 0 else "indivizibil cu doi "for item in lista]
+# print(nou)
+
+# word = 'Hello there thanks for trying my Kata'
+# word = '   Hello     World   '
+# word = ''
+# word = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/ \
+#         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+# print(len(word))
+# new_word = ""
+# if len(word) >= 140:
+#     new_word = False
+# elif len(word) == 0:
+#     new_word = False
+#
+# else:
+#     new_word = "#"+word.replace(" ", "")
+# print(new_word)
+
+# def functie(word):
+#     lista = [item for item in word.lower()]
+#     single = [item for item in lista if lista.count(item) == 1]
+#     first = single[0]
+#     return first
+
+# def functie(word):
+#     # lista = [item for item in word.lower()]
+#     single = [item for item in word.lower() if word.count(item) == 1][0]
+#     return single
+#
+
+
+# ex Number of trailing zeros of N!
+# import math
+# def calcul_factorial(n):
+#     amount = (math.factorial(n))
+#     list_numbers = [eval(i) for i in [item for item in str(amount)]]
+#     empty_list = []
+#     for i in range(1, len(list_numbers)):
+#         if list_numbers[i] == 0 and list_numbers[i - 1] != 0:
+#             empty_list.append(list_numbers[i])
+#     return f'Factorial amount is {amount}, and zeros appear for {len(empty_list)} times'
+# #
+# print(calcul_factorial(12))
+# print(calcul_factorial(6))
+
+# def sum_pairs(ints, s):
+#     complement_dict = {}
+#
+#     for i in ints:
+#         if i in complement_dict:
+#             return [s - i, i]
+#         else:
+#             complement_dict[s - i] = i
+#
+#     return None
+#
+# print(sum_pairs([11, 3, 7, 5],10))
+
+# cnp
+# cnp_introdus = input("Tell me your CNP: ")
+#
+#
+# def no_characters():
+#     if len(cnp_introdus) == 13:
+#         return True
+#
+# def numbers():
+#     if cnp_introdus.isnumeric():
+#         return True
+#
+# def first_digit():
+#     if int(cnp_introdus[0]) != 0:
+#         return True
+#
+# def judet():
+#     if int(cnp_introdus[7:9]) in range(1, 47) or cnp_introdus[7:9] in range(51, 53):
+#         return True
+#
+# def nnn():
+#     if int(cnp_introdus[9:12]) in range(1, 1000):
+#         return True
+# def control_digit():
+#     b = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9]
+#     valoare = int(cnp_introdus[0])*b[0]+int(cnp_introdus[1])*b[1]+int(cnp_introdus[2])*b[2]\
+#               +int(cnp_introdus[3])*b[3]+int(cnp_introdus[4])*b[4]+int(cnp_introdus[5])*b[5]+int(cnp_introdus[6])*b[6]+\
+#                 int(cnp_introdus[7])*b[7]+int(cnp_introdus[8])*b[8]+int(cnp_introdus[9])*b[9]+int(cnp_introdus[10])*b[10]\
+#               +int(cnp_introdus[11])*b[11]
+#
+#     result = valoare % 11
+#     last_digit_calculation = 0
+#     if result == 10:
+#         last_digit_calculation = 1
+#     else:
+#         last_digit_calculation = result
+#     if int(cnp_introdus[12]) == last_digit_calculation:
+#         return True
+
+# print(control_digit())
+# print(no_characters())
+# print(numbers())
+# print(first_digit())
+# print(judet())
+# print(nnn())
+# def check():
+#     msg = ""
+#     if control_digit() == no_characters() == numbers() == first_digit() == judet() == nnn() == True:
+#         msg = "CNP valid"
+#     else:
+#         msg = 'CNP invalid'
+#     return msg
+#
+# print(check())
+
+#remove vocale
+
+# vowels = ['a', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+# string = input('Tell me the string: ')
+# for item in string:
+#     if item not in vowels:
+#         print(item, end="")
+
+# Square Every Digit
+# final =""
+# number = 9119
+# lista = [str(int(item)**2) for item in str(number)]
+# print("".join(lista))
+
+# abc
